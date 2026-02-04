@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ko" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO 메타 태그 -->
+    <title>성적표 분석 | 시험 성적 분석 리포트 - 무료 성적 분석</title>
+    <meta name="description" content="중학생, 고등학생 시험 성적을 3분 만에 분석! 점수만 입력하면 강점, 약점, 다음 시험 전략까지 자동으로 분석해드립니다. 무료 성적 분석 서비스">
+    <meta name="keywords" content="성적표, 성적 분석, 시험 성적, 성적표 분석, 내 성적 확인, 중학생 성적, 고등학생 성적, 성적 리포트, 시험 분석, 성적 관리, 중간고사, 기말고사">
+    <meta name="author" content="성적표 분석">
+    <meta name="robots" content="index, follow">
+    
+    <!-- 오픈그래프 (카카오톡, 페이스북 공유) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="성적표 분석 - 시험 성적 자동 분석">
+    <meta property="og:description" content="점수만 입력하면 3분 만에 강점, 약점, 전략까지 자동 분석! 중학생, 고등학생 무료 성적 분석">
+    <meta property="og:url" content="https://yoursite.com">
+    <meta property="og:image" content="https://yoursite.com/og-image.jpg">
+    <meta property="og:site_name" content="성적표 분석">
+    
+    <!-- 트위터 카드 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="성적표 분석 - 시험 성적 자동 분석">
+    <meta name="twitter:description" content="점수만 입력하면 3분 만에 강점, 약점, 전략까지 자동 분석!">
+    <meta name="twitter:image" content="https://yoursite.com/twitter-image.jpg">
+    
+    <!-- 네이버 검색 최적화 -->
+    <meta name="naver-site-verification" content="YOUR_NAVER_VERIFICATION_CODE">
+    
+    <!-- 구글 검색 최적화 -->
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE">
+    
+    <!-- 모바일 웹앱 설정 -->
+    <meta name="theme-color" content="#0d1117">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="성적표 분석">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+            --accent-color: #58a6ff;
+            --accent-hover: #4184e4;
+            --success-bg: #1a472a;
+            --success-text: #3fb950;
+            --warning-bg: #4d3800;
+            --warning-text: #f0b72f;
+            --danger-bg: #5d1f1f;
+            --danger-text: #f85149;
+        }
+
+        body.light-mode {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-tertiary: #ffffff;
+            --text-primary: #24292f;
+            --text-secondary: #57606a;
+            --border-color: #d0d7de;
+            --accent-color: #0969da;
+            --accent-hover: #0550ae;
+            --success-bg: #dafbe1;
+            --success-text: #0969da;
+            --warning-bg: #fff8c5;
+            --warning-text: #9a6700;
+            --danger-bg: #ffebe9;
+            --danger-text: #cf222e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--bg-secondary);
+            margin-bottom: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-primary);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.2s;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+            accent-color: var(--accent-color);
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .subject-inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: var(--accent-hover);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .summary-card.green {
+            background: linear-gradient(135deg, #2f855a 0%, #276749 100%);
+        }
+
+        .summary-card.red {
+            background: linear-gradient(135deg, #c53030 0%, #9b2c2c 100%);
+        }
+
+        .summary-card.blue {
+            background: linear-gradient(135deg, #2b6cb0 0%, #2c5282 100%);
+        }
+
+        body.light-mode .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body.light-mode .summary-card.green {
+            background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        }
+
+        body.light-mode .summary-card.red {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+        }
+
+        body.light-mode .summary-card.blue {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .summary-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 8px 0;
+        }
+
+        .summary-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .subject-card {
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            background: var(--bg-tertiary);
+        }
+
+        .subject-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .subject-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge.strong {
+            background: var(--success-bg);
+            color: var(--success-text);
+        }
+
+        .badge.normal {
+            background: var(--warning-bg);
+            color: var(--warning-text);
+        }
+
+        .badge.weak {
+            background: var(--danger-bg);
+            color: var(--danger-text);
+        }
+
+        .score-bar {
+            position: relative;
+            background: var(--bg-primary);
+            height: 32px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 12px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .score-fill {
+            height: 100%;
+            background: var(--accent-color);
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            transition: width 0.5s ease;
+        }
+
+        .avg-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #f85149;
+        }
+
+        .avg-label {
+            position: absolute;
+            top: -20px;
+            font-size: 11px;
+            color: #f85149;
+            transform: translateX(-50%);
+            font-weight: 600;
+        }
+
+        .analysis-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-top: 12px;
+            padding: 12px;
+            background: var(--bg-primary);
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .strategy-section {
+            margin-top: 30px;
+        }
+
+        .strategy-item {
+            padding: 16px;
+            background: var(--bg-tertiary);
+            border-left: 4px solid var(--accent-color);
+            margin-bottom: 12px;
+            border-radius: 4px;
+        }
+
+        .strategy-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-primary);
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 12px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+
+            .summary-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .card {
+                border: 1px solid #ddd !important;
+                background: white !important;
+            }
+            button, .theme-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 구조화된 데이터 (Schema.org) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "성적표 분석",
+        "description": "중학생, 고등학생 시험 성적을 3분 만에 분석하는 무료 서비스",
+        "url": "https://yoursite.com",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "KRW"
+        },
+        "featureList": [
+            "시험 성적 자동 분석",
+            "강점 약점 파악",
+            "다음 시험 전략 제시",
+            "PDF 저장 기능"
+        ],
+        "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": "student"
+        }
+    }
+    </script>
+
+    <div class="container">
+        <!-- 입력 섹션 -->
+        <div id="inputSection">
+            <header role="banner">
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <span id="themeIcon">☀️</span>
+                    <span id="themeText">라이트</span>
+                </div>
+                <h1>📊 성적표 분석 - 시험 성적 자동 분석 리포트</h1>
+                <p class="subtitle">점수만 입력하면 3분 만에 강점·약점·전략까지 자동 분석</p>
+            </header>
+
+            <main role="main">
+            <article class="card">
+                <h2 style="font-size: 18px; margin-bottom: 20px; font-weight: 600;">시험 정보 입력</h2>
+                <div class="input-group">
+                    <label>학교 구분</label>
+                    <select id="schoolType">
+                        <option value="middle">중학교</option>
+                        <option value="high">고등학교</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>학년</label>
+                    <select id="grade">
+                        <option value="1">1학년</option>
+                        <option value="2">2학년</option>
+                        <option value="3">3학년</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>시험 종류</label>
+                    <select id="examType">
+                        <option value="midterm">중간고사</option>
+                        <option value="final">기말고사</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>기본 과목 점수 입력</label>
+                    <div class="subject-inputs">
+                        <div>
+                            <label>국어</label>
+                            <input type="number" id="korean" min="0" max="100" placeholder="0-100">
+                        </div>
+                        <div>
+                            <label>수학</label>
+                            <input type="number" id="math" min="0" max="100" placeholder="0-100">
+                        </div>
+                        <div>
+                            <label>영어</label>
+                            <input type="number" id="english" min="0" max="100" placeholder="0-100">
+                        </div>
+                        <div>
+                            <label>과학</label>
+                            <input type="number" id="science" min="0" max="100" placeholder="0-100">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>사회 계열 과목 선택</label>
+                    <div style="display: flex; gap: 20px; margin-bottom: 12px;">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="checkbox" id="socialCheck" onchange="toggleSubject('social')">
+                            <span>사회</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="checkbox" id="historyCheck" onchange="toggleSubject('history')">
+                            <span>역사</span>
+                        </label>
+                    </div>
+                    <div class="subject-inputs">
+                        <div id="socialInput" style="display: none;">
+                            <label>사회</label>
+                            <input type="number" id="social" min="0" max="100" placeholder="0-100">
+                        </div>
+                        <div id="historyInput" style="display: none;">
+                            <label>역사</label>
+                            <input type="number" id="history" min="0" max="100" placeholder="0-100">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>추가 선택 과목</label>
+                    <div style="display: flex; gap: 20px; margin-bottom: 12px;">
+                        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <input type="checkbox" id="hanjaCheck" onchange="toggleSubject('hanja')">
+                            <span>한문</span>
+                        </label>
+                    </div>
+                    <div class="subject-inputs">
+                        <div id="hanjaInput" style="display: none;">
+                            <label>한문</label>
+                            <input type="number" id="hanja" min="0" max="100" placeholder="0-100">
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="analyzeScores()">분석 시작하기</button>
+            </article>
+            </main>
+        </div>
+
+        <!-- 리포트 섹션 -->
+        <div id="reportSection" class="hidden">
+            <header role="banner">
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <span id="themeIcon2">☀️</span>
+                    <span id="themeText2">라이트</span>
+                </div>
+                <h1>📊 성적표 분석 결과</h1>
+                <p class="subtitle" id="reportSubtitle"></p>
+            </header>
+
+            <main role="main">
+            <!-- 요약 카드 -->
+            <section aria-label="성적 요약">
+            <div class="summary-cards" id="summaryCards"></div>
+            </section>
+
+            <!-- 과목별 분석 -->
+            <section aria-label="과목별 상세 분석">
+            <article class="card">
+                <h2 style="margin-bottom: 20px;">과목별 상세 분석</h2>
+                <div id="subjectAnalysis"></div>
+            </article>
+            </section>
+
+            <!-- 다음 시험 전략 -->
+            <section aria-label="다음 시험 전략">
+            <article class="card">
+                <h2 style="margin-bottom: 20px;">다음 시험 전략</h2>
+                <div id="strategy"></div>
+            </article>
+            </section>
+
+            <!-- 액션 버튼 -->
+            <div class="action-buttons">
+                <button onclick="window.print()">📄 PDF로 저장</button>
+                <button class="btn-secondary" onclick="resetForm()">🔄 다시 분석하기</button>
+            </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // 테마 관리
+        function toggleSubject(subject) {
+            const checkbox = document.getElementById(subject + 'Check');
+            const input = document.getElementById(subject + 'Input');
+            const field = document.getElementById(subject);
+            
+            if (checkbox.checked) {
+                input.style.display = 'block';
+            } else {
+                input.style.display = 'none';
+                field.value = ''; // 체크 해제시 값 초기화
+            }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const isLight = body.classList.toggle('light-mode');
+            
+            // 로컬스토리지에 저장
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            
+            // 아이콘과 텍스트 업데이트
+            updateThemeUI(isLight);
+        }
+
+        function updateThemeUI(isLight) {
+            const icon = isLight ? '🌙' : '☀️';
+            const text = isLight ? '다크' : '라이트';
+            
+            document.getElementById('themeIcon').textContent = icon;
+            document.getElementById('themeText').textContent = text;
+            
+            const icon2 = document.getElementById('themeIcon2');
+            const text2 = document.getElementById('themeText2');
+            if (icon2) icon2.textContent = icon;
+            if (text2) text2.textContent = text;
+        }
+
+        // 페이지 로드 시 저장된 테마 적용
+        (function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                updateThemeUI(true);
+            } else {
+                updateThemeUI(false);
+            }
+        })();
+
+        // 평균 데이터 (학년별 통계 기반)
+        const averages = {
+            korean: 75,
+            math: 70,
+            english: 72,
+            science: 73,
+            social: 76,
+            history: 74,
+            hanja: 77
+        };
+
+        const subjectNames = {
+            korean: '국어',
+            math: '수학',
+            english: '영어',
+            science: '과학',
+            social: '사회',
+            history: '역사',
+            hanja: '한문'
+        };
+
+        function analyzeScores() {
+            // 입력값 수집 (체크된 과목만)
+            const scores = {
+                korean: parseInt(document.getElementById('korean').value) || 0,
+                math: parseInt(document.getElementById('math').value) || 0,
+                english: parseInt(document.getElementById('english').value) || 0,
+                science: parseInt(document.getElementById('science').value) || 0
+            };
+
+            // 선택 과목 추가 (체크된 경우만)
+            if (document.getElementById('socialCheck').checked) {
+                scores.social = parseInt(document.getElementById('social').value) || 0;
+            }
+            if (document.getElementById('historyCheck').checked) {
+                scores.history = parseInt(document.getElementById('history').value) || 0;
+            }
+            if (document.getElementById('hanjaCheck').checked) {
+                scores.hanja = parseInt(document.getElementById('hanja').value) || 0;
+            }
+
+            // 유효성 검사
+            const hasValidScore = Object.values(scores).some(score => score > 0);
+            if (!hasValidScore) {
+                alert('최소 한 과목 이상의 점수를 입력해주세요.');
+                return;
+            }
+
+            const schoolType = document.getElementById('schoolType').value;
+            const grade = document.getElementById('grade').value;
+            const examType = document.getElementById('examType').value;
+
+            // 분석 실행
+            const analysis = performAnalysis(scores);
+            
+            // 리포트 렌더링
+            renderReport(analysis, schoolType, grade, examType);
+
+            // 화면 전환
+            document.getElementById('inputSection').classList.add('hidden');
+            document.getElementById('reportSection').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function performAnalysis(scores) {
+            const subjects = Object.keys(scores);
+            const validScores = subjects.filter(s => scores[s] > 0);
+            
+            // 전체 평균 계산
+            const totalAvg = validScores.reduce((sum, s) => sum + scores[s], 0) / validScores.length;
+
+            // 과목별 분석
+            const subjectAnalysis = {};
+            let strongest = { subject: '', score: 0 };
+            let weakest = { subject: '', score: 100 };
+
+            validScores.forEach(subject => {
+                const score = scores[subject];
+                const avg = averages[subject];
+                const diff = score - avg;
+                
+                let status = 'normal';
+                if (diff >= 8) status = 'strong';
+                else if (diff <= -8) status = 'weak';
+
+                subjectAnalysis[subject] = {
+                    score,
+                    avg,
+                    diff,
+                    status,
+                    analysis: generateAnalysis(subjectNames[subject], score, avg, diff, status)
+                };
+
+                if (score > strongest.score) {
+                    strongest = { subject, score };
+                }
+                if (score < weakest.score) {
+                    weakest = { subject, score };
+                }
+            });
+
+            // 위험도 계산
+            const weakCount = Object.values(subjectAnalysis).filter(a => a.status === 'weak').length;
+            let riskLevel = '낮음';
+            if (weakCount >= 3) riskLevel = '높음';
+            else if (weakCount >= 1) riskLevel = '중간';
+
+            // 전략 생성
+            const strategy = generateStrategy(subjectAnalysis, validScores);
+
+            return {
+                totalAvg: totalAvg.toFixed(1),
+                strongest: subjectNames[strongest.subject],
+                weakest: subjectNames[weakest.subject],
+                riskLevel,
+                subjectAnalysis,
+                strategy
+            };
+        }
+
+        function generateAnalysis(name, score, avg, diff, status) {
+            if (status === 'strong') {
+                return `${name}은(는) 평균보다 ${Math.abs(diff).toFixed(1)}점 높아 현재 강점 과목입니다. 현재 공부 방식을 유지하면서 심화 문제에 도전해보세요.`;
+            } else if (status === 'weak') {
+                return `${name}은(는) 평균보다 ${Math.abs(diff).toFixed(1)}점 낮아 다음 시험에서 가장 우선적으로 관리해야 할 과목입니다. 기본 개념 복습에 집중하세요.`;
+            } else {
+                return `${name}은(는) 평균 수준의 안정적인 성적입니다. 꾸준한 학습으로 강점 과목으로 만들 수 있습니다.`;
+            }
+        }
+
+        function generateStrategy(analysis, subjects) {
+            const strategies = [];
+            
+            // 취약 과목 전략
+            const weakSubjects = subjects.filter(s => analysis[s].status === 'weak');
+            if (weakSubjects.length > 0) {
+                strategies.push({
+                    title: '🔴 우선 공부 과목',
+                    content: weakSubjects.map(s => `${subjectNames[s]}: 기본 개념 복습 60% + 기출문제 40%`).join(' / ')
+                });
+            }
+
+            // 강점 과목 전략
+            const strongSubjects = subjects.filter(s => analysis[s].status === 'strong');
+            if (strongSubjects.length > 0) {
+                strategies.push({
+                    title: '🟢 유지 관리 과목',
+                    content: strongSubjects.map(s => `${subjectNames[s]}: 현재 공부량 유지 + 심화 문제 풀이`).join(' / ')
+                });
+            }
+
+            // 시간 배분
+            const totalTime = 100;
+            const weakTime = weakSubjects.length > 0 ? 60 : 0;
+            const normalTime = totalTime - weakTime;
+            
+            strategies.push({
+                title: '⏰ 추천 시간 배분',
+                content: `취약 과목 ${weakTime}% / 나머지 과목 ${normalTime}%`
+            });
+
+            return strategies;
+        }
+
+        function renderReport(analysis, schoolType, grade, examType) {
+            // 서브타이틀
+            const schoolTypeName = schoolType === 'middle' ? '중학교' : '고등학교';
+            const examTypeName = examType === 'midterm' ? '중간고사' : '기말고사';
+            document.getElementById('reportSubtitle').textContent = `${schoolTypeName} ${grade}학년 ${examTypeName} 분석 결과`;
+
+            // 요약 카드
+            const summaryHTML = `
+                <div class="summary-card">
+                    <div class="summary-label">전체 평균</div>
+                    <div class="summary-value">${analysis.totalAvg}</div>
+                </div>
+                <div class="summary-card green">
+                    <div class="summary-label">가장 강한 과목</div>
+                    <div class="summary-value">${analysis.strongest}</div>
+                </div>
+                <div class="summary-card red">
+                    <div class="summary-label">가장 약한 과목</div>
+                    <div class="summary-value">${analysis.weakest}</div>
+                </div>
+                <div class="summary-card blue">
+                    <div class="summary-label">다음 시험 위험도</div>
+                    <div class="summary-value">${analysis.riskLevel}</div>
+                </div>
+            `;
+            document.getElementById('summaryCards').innerHTML = summaryHTML;
+
+            // 과목별 분석
+            let subjectHTML = '';
+            Object.keys(analysis.subjectAnalysis).forEach(subject => {
+                const data = analysis.subjectAnalysis[subject];
+                const badgeClass = data.status === 'strong' ? 'strong' : data.status === 'weak' ? 'weak' : 'normal';
+                const badgeText = data.status === 'strong' ? '강점' : data.status === 'weak' ? '취약' : '보통';
+                const barWidth = (data.score / 100) * 100;
+                const avgPosition = (data.avg / 100) * 100;
+
+                subjectHTML += `
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-name">${subjectNames[subject]}</div>
+                            <span class="badge ${badgeClass}">${badgeText}</span>
+                        </div>
+                        <div class="score-bar">
+                            <div class="score-fill" style="width: ${barWidth}%">${data.score}점</div>
+                            <div class="avg-line" style="left: ${avgPosition}%">
+                                <div class="avg-label">평균 ${data.avg}</div>
+                            </div>
+                        </div>
+                        <div class="analysis-text">${data.analysis}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('subjectAnalysis').innerHTML = subjectHTML;
+
+            // 전략
+            let strategyHTML = '';
+            analysis.strategy.forEach(s => {
+                strategyHTML += `
+                    <div class="strategy-item">
+                        <div class="strategy-title">${s.title}</div>
+                        <div>${s.content}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('strategy').innerHTML = strategyHTML;
+        }
+
+        function resetForm() {
+            document.getElementById('inputSection').classList.remove('hidden');
+            document.getElementById('reportSection').classList.add('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // 엔터키로 분석 시작
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input[type="number"]');
+            inputs.forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        analyzeScores();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
